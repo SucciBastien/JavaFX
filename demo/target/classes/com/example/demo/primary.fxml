@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
-<?import javafx.geometry.Insets?>
-<?import fxmltableview.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
 <?import com.example.demo.*?>
 
 
 
 
-<VBox alignment="CENTER" spacing="40" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" >
+
+<VBox alignment="CENTER" spacing="40" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MyTableView">
    <HBox alignment="CENTER" spacing="40" >
       <children>
-         <!-- <Button fx:id="primaryButton" text="Ajouter" />
+         <Button fx:id="primaryButton" text="Ajouter" />
          <Button fx:id="modification" text="Modifier" />
-         <Button fx:id="delete" text="Supprimer" /> -->
+         <Button fx:id="delete" text="Supprimer" />
       </children>
    </HBox>
    
-   <MyTableView fx:id="MyTableView">
+   <TableView fx:id="MyTableView">
       <columns>
-         <TableColumn fx:id="nomCol" text="Nom" prefWidth="100"/>
-         <TableColumn fx:id="prenomCol" text="Prenom" prefWidth="100"/>
-         <TableColumn fx:id="dateCol" text="Date d'embauche" prefWidth="100"/>
-         <TableColumn fx:id="fonctionCol" text="Fonction" prefWidth="100"/>
-         <TableColumn fx:id="salaireCol" text="Salaire brut (K)" prefWidth="100"/>
-         <TableColumn fx:id="serviceCol" text="Service" prefWidth="100"/>
-         <TableColumn fx:id="agenceCol" text="Agence" prefWidth="100"/>
+         <TableColumn text="Nom" prefWidth="100"><cellValueFactory><PropertyValueFactory property="nom"/></cellValueFactory></TableColumn>
+         <TableColumn fx:id="prenomCol" text="Prenom" prefWidth="100"></TableColumn>
+         <TableColumn fx:id="dateCol" text="Date d'embauche" prefWidth="100"></TableColumn>
+         <TableColumn fx:id="fonctionCol" text="Fonction" prefWidth="100"></TableColumn>
+         <TableColumn fx:id="salaireCol" text="Salaire brut (K)" prefWidth="100"></TableColumn>
+         <TableColumn fx:id="serviceCol" text="Service" prefWidth="100"></TableColumn>
+         <TableColumn fx:id="agenceCol" text="Agence" prefWidth="100"></TableColumn>
       </columns>
-   </MyTableView>
+   </TableView>
 </VBox>
    
 
