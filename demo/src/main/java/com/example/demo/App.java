@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
+
 
 /**
  * JavaFX App
@@ -18,7 +18,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 700, 480);
+        scene = new Scene(loadFXML("primary"), 800, 600);
         stage.setScene(scene);
         stage.show();
     }
