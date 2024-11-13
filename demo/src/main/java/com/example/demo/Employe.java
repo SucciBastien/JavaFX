@@ -1,11 +1,20 @@
 package com.example.demo;
 
+import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-public class Employe implements Comparable<Employe> {
+public class Employe implements Comparable<Employe>, Serializable {
     
+    private Integer id;
     private String nom;
     private String prenom;
     private String dateEmbauche;
@@ -17,7 +26,8 @@ public class Employe implements Comparable<Employe> {
     private int enfant11_15;
     private int enfant16_18;
 
-    public Employe(String nom, String prenom, String dateEmbauche, String fonction, Float salaireBrut, String service, String agence, int enfant0_10, int enfant11_15, int enfant16_18) {
+    public Employe(int id, String nom, String prenom, String dateEmbauche, String fonction, Float salaireBrut, String service, String agence, int enfant0_10, int enfant11_15, int enfant16_18) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.dateEmbauche = dateEmbauche;
@@ -30,6 +40,36 @@ public class Employe implements Comparable<Employe> {
         this.enfant16_18 = enfant16_18;
     }
 
+    public static ObservableList<Employe>  listeEmployes() throws SQLException{
+        ObservableList<Employe> listeEmployes = FXCollections.observableArrayList();
+        ResultSet rs = JDBC.getRsSelectAllEmploye();
+        while (rs.next()){
+            int id = rs.getInt("id");
+            String nom = rs.getString("nom");
+            String prenom = rs.getString("prenom");
+            String date = rs.getDate("dateEmbauche").toString();
+            String fonction = rs.getString("fonction");
+            Float salaireBrut = rs.getFloat("salaireBrut");
+            String service = rs.getString("service");
+            String agence = rs.getString("agence");
+            int enfant0_10 = rs.getInt("nbEnfant0_10");
+            int enfant11_15 = rs.getInt("nbEnfant11_15");
+            int enfant16_18 = rs.getInt("nbEnfant16_18");
+
+            Employe employe = new Employe(id, nom, prenom, date, fonction, salaireBrut, service, agence, enfant0_10, enfant11_15, enfant16_18);
+
+            listeEmployes.add(employe);
+        }
+        
+        return listeEmployes;
+    }
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getNom() {
         return nom;
     }

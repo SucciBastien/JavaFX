@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -40,9 +41,9 @@ public class ModifyController implements Initializable{
 
     public static int idEmploye;
 
-    public static void setEmployeToModify(Employe employe, int id) {
+    public static void setEmployeToModify(Employe employe) {
         employeToModify = employe;
-        idEmploye = id;
+        idEmploye = employe.getId();
     }
 
     @Override
@@ -60,36 +61,11 @@ public class ModifyController implements Initializable{
         enfant16_18Text.setText(String.valueOf(employeToModify.getEnfant16_18()));
 
         submitButton.setOnAction(event -> {
-            if(employeToModify.getNom() != nomText.getText()){
-                TableViewController.employeData.get(idEmploye).setNom(nomText.getText());
+            try {
+                JDBC.modifyEmploye(idEmploye, nomText.getText(), prenomText.getText(), dateEmbaucheText.getText(), fonctionText.getText(), Float.valueOf(salaireBrutText.getText()), serviceText.getText(), agenceText.getText(), Integer.valueOf(enfant0_10Text.getText()), Integer.valueOf(enfant11_15Text.getText()), Integer.valueOf(enfant16_18Text.getText()));
+            } catch (NumberFormatException | SQLException e) {
+                e.printStackTrace();
             }
-            if(employeToModify.getPrenom() != prenomText.getText()){
-                TableViewController.employeData.get(idEmploye).setPrenom(prenomText.getText());
-            };
-            if(employeToModify.getDateEmbauche() != dateEmbaucheText.getText()){
-                TableViewController.employeData.get(idEmploye).setDateEmbauche(dateEmbaucheText.getText());
-            };
-            if(employeToModify.getFonction() != fonctionText.getText()){
-                TableViewController.employeData.get(idEmploye).setFonction(fonctionText.getText());
-            };
-            if(employeToModify.getSalaireBrut() != Float.valueOf(salaireBrutText.getText())){
-                TableViewController.employeData.get(idEmploye).setSalaireBrut(Float.valueOf(salaireBrutText.getText()));
-            };
-            if(employeToModify.getService() != serviceText.getText()){
-                TableViewController.employeData.get(idEmploye).setService(serviceText.getText());
-            };
-            if(employeToModify.getAgence() != agenceText.getText()){
-                TableViewController.employeData.get(idEmploye).setAgence(agenceText.getText());
-            };
-            if(employeToModify.getEnfant0_10() != Integer.valueOf(enfant0_10Text.getText())){
-                TableViewController.employeData.get(idEmploye).setEnfant0_10(Integer.valueOf(enfant0_10Text.getText()));
-            };
-            if(employeToModify.getEnfant11_15() != Integer.valueOf(enfant11_15Text.getText())){
-                TableViewController.employeData.get(idEmploye).setEnfant11_15(Integer.valueOf(enfant11_15Text.getText()));
-            };
-            if(employeToModify.getEnfant16_18() != Integer.valueOf(enfant16_18Text.getText())){
-                TableViewController.employeData.get(idEmploye).setEnfant16_18(Integer.valueOf(enfant16_18Text.getText()));
-            };
             try {
                 App.setRoot("primary");
             } catch (IOException e) {

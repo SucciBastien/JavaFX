@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
@@ -53,7 +54,12 @@ public class AddController implements Initializable{
             int enfant0_10 = Integer.valueOf(enfant0_10Text.getText());
             int enfant11_15 = Integer.valueOf(enfant11_15Text.getText());
             int enfant16_18 = Integer.valueOf(enfant16_18Text.getText());
-            TableViewController.employeData.add(new Employe(nom, prenom, dateEmbauche, fonction, salaireBrut, service, agence, enfant0_10, enfant11_15, enfant16_18));
+            // TableViewController.employeData.add(new Employe(nom, prenom, dateEmbauche, fonction, salaireBrut, service, agence, enfant0_10, enfant11_15, enfant16_18));
+            try {
+                JDBC.addEmploye(nom, prenom, dateEmbauche, fonction, salaireBrut, service, agence, enfant0_10, enfant11_15, enfant16_18);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             try {
                 App.setRoot("primary");
             } catch (IOException e) {

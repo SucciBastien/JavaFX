@@ -17,7 +17,41 @@
    
    <TableView fx:id="myTable">
       <columns>
-         
+         <TableColumn fx:id="nomCol" text="Nom" prefWidth="100">
+            <cellValueFactory>
+               <PropertyValueFactory property="nom" />
+            </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="prenomCol" text="Prenom" prefWidth="100">
+            <cellValueFactory>
+               <PropertyValueFactory property="prenom" />
+            </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="dateCol" text="Date d'embauche" prefWidth="150">
+            <cellValueFactory>
+               <PropertyValueFactory property="dateEmbauche" />
+            </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="fonctionCol" text="Fonction" prefWidth="100">
+            <cellValueFactory>
+               <PropertyValueFactory property="fonction" />
+            </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="salaireCol" text="Salaire Brut (K)" prefWidth="100">
+            <cellValueFactory>
+               <PropertyValueFactory property="salaireBrut" />
+            </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="serviceCol" text="Service" prefWidth="100">
+            <cellValueFactory>
+               <PropertyValueFactory property="service" />
+            </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="agenceCol" text="Agence" prefWidth="100">
+            <cellValueFactory>
+               <PropertyValueFactory property="agence" />
+            </cellValueFactory>
+         </TableColumn>
       </columns>
    </TableView>
 </VBox>
